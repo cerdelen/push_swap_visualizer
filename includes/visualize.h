@@ -19,6 +19,14 @@
 
 #define MIDDLE_LINE_X_VALUE WINDOW_W/2
 
+#define STACK_A data->stacks.stack_a
+#define STACK_B data->stacks.stack_b
+#define IN_BACKUP data->stacks.input_backup
+#define MLX data->mlx
+#define IMAGE data->full_img
+
+
+
 typedef struct mlx_data
 {
 	void		*mlx;
@@ -27,10 +35,12 @@ typedef struct mlx_data
 
 typedef struct s_stacks
 {
+	t_list		*input_backup;
 	t_list		*stack_a;
 	t_list		*stack_b;
 	size_t		size_a;
 	size_t		size_b;
+	int			*tabs;
 }				t_stacks;
 
 typedef struct	img_data {
@@ -43,8 +53,9 @@ typedef struct	img_data {
 
 typedef struct	s_data {
 	int			time;
+	int			max_nbr;
 	img_data	full_img;
-	mlx_data	mlx_data;
+	mlx_data	mlx;
 	t_stacks	stacks;
 }				t_data;
 
