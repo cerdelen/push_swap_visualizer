@@ -170,7 +170,7 @@ void	clone_list(t_list **orig, t_list **copy)
 	}
 }
 
-void	print_lst_content(void *content)
+void	print_lst_content_int(void *content)
 {
 	printf("%i\n", 	*((int *)content));
 }
@@ -188,24 +188,14 @@ bool input_init(int argc, char **argv, t_data *data)
 	if (reapply_values(&STACK_A, argc - 1, data->stacks.tabs) == false)
 		return (false);
 	clone_list(&STACK_A, &IN_BACKUP);
-	printf("start of print content A\n");
-	ft_lstiter(STACK_A, print_lst_content);
-	printf("start of print content backup\n");
-	ft_lstiter(IN_BACKUP, print_lst_content);
+	// printf("start of print content A\n");
+	// ft_lstiter(STACK_A, print_lst_content);
+	// printf("start of print content backup\n");
+	// ft_lstiter(IN_BACKUP, print_lst_content);
 	return true;
 }
 
-// void	free_and_exit(t_data *data)
-// {
-// 	if (data->stacks.stack_a != NULL)
-// 	{
-// 		ft_lstclear(&data->stacks.stack_a, ft_lstdelone);
-// 	}
-// 	if (data->stacks.stack_b != NULL)
-// 	{
-// 		ft_lstclear(&data->stacks.stack_b, ft_lstdelone);
-// 	}
-//}
+
 
 int main(int argc, char **argv)
 {
@@ -219,10 +209,6 @@ int main(int argc, char **argv)
 	}
 	printf("NO error encountered with input\n");
 
-
-	// printf("%i %i %i %i\n", START_LINE_STACK_A, MIDDLE_LINE_X_VALUE - END_LINE_STACK_A,
-	// 	 START_LINE_STACK_B - MIDDLE_LINE_X_VALUE, WINDOW_W - (END_LINE_STACK_B));
-	// printf("%f %f %f\n", START_LINE_STACK_A, END_LINE_STACK_A, MIDDLE_LINE_X_VALUE);
 	MLX.mlx = mlx_init();
 	MLX.win = mlx_new_window(MLX.mlx, WINDOW_W, WINDOW_H, "Push-Swap-Visualizer by CErdelen");
 	IMAGE.img = mlx_new_image(MLX.mlx, WINDOW_W, WINDOW_H);
