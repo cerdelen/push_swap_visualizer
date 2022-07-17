@@ -119,7 +119,7 @@ int	index_of_sorted_arr(int *arr, int value, int max)
 	return (i);
 }
 
-bool input_init(int argc, char **argv, t_data *data)
+bool list_input_init(int argc, char **argv, t_data *data)
 {
 	int	j = 1;
 	for (int i = 1; i < argc; i++)
@@ -141,3 +141,4 @@ bool input_init(int argc, char **argv, t_data *data)
 	data->status = MENU;
 	return true;
 }
+

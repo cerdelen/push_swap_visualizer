@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <stdbool.h>
 
+#define BUFFER_SIZE 100
+
 // Original Libft Functions
 
 int			ft_atoi(const char *nptr);
@@ -85,5 +87,7 @@ char	*gnl_strchr(const char *s, int c);
 int		gnl_strlen(const char *s);
 void	*gnl_memcpy(void *dest, const void *src, size_t n);
 void	*gnl_memmove(void *dest, const void *src, size_t n);
+
+
 
 #endif

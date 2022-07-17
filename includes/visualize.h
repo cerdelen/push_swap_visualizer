@@ -28,6 +28,7 @@
 #define MLX data->mlx
 #define IMAGE data->full_img
 #define STATUS data->status
+#define INSTRUCTIONS data->instr
 
 enum {
 	ON_KEYDOWN = 2,
@@ -94,13 +95,14 @@ typedef struct	s_data {
 	int			time;
 	int			max_nbr;
 	int			status;
+	char		**instr;
 	img_data	full_img;
 	mlx_data	mlx;
 	t_stacks	stacks;
 }				t_data;
 
 //	Input Functions
-bool		input_init(int argc, char **argv, t_data *data);
+bool		list_input_init(int argc, char **argv, t_data *data);
 bool 		is_an_integer(const char *str_num);
 void		sort_arr(int *arr_a, int max);
 bool		double_input(int *arr, int max);
@@ -127,5 +129,12 @@ int			key_press(int key, t_data *data);
 void		draw_stacks(t_data *data, void (*f)(int, int, int, t_data *, bool, int));
 void		draw(int line_i, int elem_val, int max_value, t_data *data, bool stack, int line_max);
 void		draw_menu(t_data *data);
+
+
+
+
+
+bool	operations_input_init(t_data *data);
+
 
 #endif

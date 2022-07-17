@@ -4,7 +4,8 @@
 
 int	close_game(t_data *data)
 {
-	mlx_destroy_window(MLX.mlx, MLX.win);
+	if (MLX.win)
+		mlx_destroy_window(MLX.mlx, MLX.win);
 	free_at_end(data);
 	free(data);
 	exit(0);
@@ -145,12 +146,19 @@ int main(int argc, char **argv)
 {
 	t_data		*data;
 
-	data = malloc(sizeof(t_data));
-	if (input_init(argc, argv, data) == false)
+	data = calloc(sizeof(t_data), 1);
+	// MLX.win = NULL;
+	if (list_input_init(argc, argv, data) == false)
 	{
-		// free_and_exit(&data);
-		return (printf("error encountered with input\n"));
+		printf("error encountered with stack input\n");
+		return (close_game(data));
 	}
+	if (operations_input_init(data) == false)
+	{
+		printf("error encountered with operations input\n");
+		return (close_game(data));
+	}
+	
 	// printf("NO error encountered with input\n");
 	MLX.mlx = mlx_init();
 	MLX.win = mlx_new_window(MLX.mlx, WINDOW_W, WINDOW_H, "Push-Swap-Visualizer by CErdelen");

@@ -18,8 +18,6 @@ AR = ar rcs
 
 NAME = libft.a
 
-GNL_PATH = get_next_line
-
 SRCS = 	ft_split.c\
 		ft_itoa.c\
 		ft_strjoin.c\
@@ -64,25 +62,24 @@ SRCS = 	ft_split.c\
 		ft_lstiter_bonus.c\
 		ft_lstmap_bonus.c\
 		two_d_arrays_utils.c\
+		get_next_line_utils.c\
+		get_next_line.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(MAKE) 50 -C $(GNL_PATH)
-	@$(AR) $(NAME) $(OBJS) get_next_line/get_next_line.a
+	@$(AR) $(NAME) $(OBJS)
 	@echo "\033[92mLibft successfully compiled!\033[0m"
 
 $(OBJS): 
 	@$(CC) $(CFLAGS) -c $(SRCS)
 
 clean:
-	@$(MAKE) clean -C $(GNL_PATH)
 	@$(RM) $(OBJS)
 
 fclean: clean
-	@$(MAKE) fclean -C $(GNL_PATH)
 	@$(RM) $(NAME)
 	@echo "\033[91mLibft successfully cleaned!\033[0m"
 
