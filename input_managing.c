@@ -103,7 +103,6 @@ bool	reapply_values(t_list **stack_x, int max, int *arr)
 	return true;
 }
 
-
 t_list	*createinput(int argc, char **argv, int *tabs)
 {
 	t_list				*stack_a;
