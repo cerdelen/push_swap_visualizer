@@ -42,9 +42,29 @@ enum {
 enum {
 	MENU = 0,
 	AUTOVIEW = 1,
-	SLIDES = 1
+	SLIDES = 2
 };
 
+enum
+{
+	K_ESC = 53,
+	K_A = 0,
+	K_S = 1,
+	K_M = 46,
+
+	K_C = 8,
+
+	K_LEFT = 123,
+	K_RIGHT = 124,
+	K_DOWN = 125,
+	K_UP = 126,
+
+
+
+
+	K_PLUS = 24,
+	K_MINUS = 27
+};
 
 typedef struct mlx_data
 {
@@ -101,5 +121,11 @@ int			draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY
 int			draw_line_img(img_data *img, int beginX, int beginY, int endX, int endY, int color);
 int			close_game(t_data *data);
 int			key_press(int key, t_data *data);
+
+//	Push_Swap Visualization Functions
+
+void		draw_stacks(t_data *data, void (*f)(int, int, int, t_data *, bool, int));
+void		draw(int line_i, int elem_val, int max_value, t_data *data, bool stack, int line_max);
+void		draw_menu(t_data *data);
 
 #endif

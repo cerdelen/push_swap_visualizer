@@ -11,13 +11,31 @@ int	close_game(t_data *data)
 	return (0);
 }
 
+void	start_slide(t_data *data)
+{
+	STATUS = SLIDES;
+	draw_stacks(data, &draw);
+}
+
 int	key_press(int key, t_data *data)
 {
-	if (key == 53)
+	printf("key == %i\n", key);
+	if (key == K_ESC)
 		close_game(data);
 	if (STATUS == MENU)
 	{
-		if ()
+		if (key == K_S)
+			start_slide(data);
+	}
+	else if (STATUS == SLIDES)
+	{
+		if (key == K_M)
+			draw_menu(data);
+	}
+	else if (STATUS == AUTOVIEW)
+	{
+		if (key == K_M)
+			draw_menu(data);
 	}
 	return (0);
 }
@@ -110,8 +128,17 @@ void	draw_stacks(t_data *data, void (*f)(int, int, int, t_data *, bool, int))
 	mlx_put_image_to_window(MLX.mlx, MLX.win, IMAGE.img, 0, 0);
 }
 
-
-
+void	draw_menu(t_data *data)
+{
+	STATUS = MENU;
+	mlx_clear_window(MLX.mlx, MLX.win);
+	mlx_string_put(MLX.mlx, MLX.win, 0, 10, 0x00FF0000, "HELLO THIS IS MENU");
+	mlx_string_put(MLX.mlx, MLX.win, 0, 20, 0x00FF0000, "press s to start slides");
+	mlx_string_put(MLX.mlx, MLX.win, 0, 30, 0x00FF0000, "press a to start auto");
+	// mlx_string_put(MLX.mlx, MLX.win, 0, 30, 0x00FF0000, string);
+	// mlx_string_put(MLX.mlx, MLX.win, 0, 40, 0x00FF0000, string);
+	// mlx_string_put(MLX.mlx, MLX.win, 0, 50, 0x00FF0000, string);
+}
 
 
 int main(int argc, char **argv)
@@ -124,22 +151,25 @@ int main(int argc, char **argv)
 		// free_and_exit(&data);
 		return (printf("error encountered with input\n"));
 	}
-	printf("NO error encountered with input\n");
+	// printf("NO error encountered with input\n");
 	MLX.mlx = mlx_init();
 	MLX.win = mlx_new_window(MLX.mlx, WINDOW_W, WINDOW_H, "Push-Swap-Visualizer by CErdelen");
 	IMAGE.img = mlx_new_image(MLX.mlx, WINDOW_W, WINDOW_H);
 	data->full_img.addr = mlx_get_data_addr(IMAGE.img, &IMAGE.bits_per_pixel, &IMAGE.line_length, &IMAGE.endian);
 	mlx_key_hook(MLX.win, key_press, data);
 	mlx_hook(MLX.win, 17, 0, close_game, data);
-	// draw_line(MLX.mlx, MLX.win, START_LINE_STACK_A, 10, END_LINE_STACK_A, 10, 0x00FF0000);
-	// draw_line(MLX.mlx, MLX.win, MIDDLE_LINE_X_VALUE, 0, MIDDLE_LINE_X_VALUE, WINDOW_H, 0x00FF0000);
-	// draw_line(MLX.mlx, MLX.win, START_LINE_STACK_B, 10, END_LINE_STACK_B, 10, 0x00FF0000);
+	draw_menu(data);
+
 
 
 	// draw_line_img(&data->full_img, 0, 0, WINDOW_W, WINDOW_H, 0x00FF0000);
 	// mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->full_img.img, 0, 0);
 
-	draw_stacks(data, &draw);
+
+
+
+
+	// draw_stacks(data, &draw);
 
 
 
