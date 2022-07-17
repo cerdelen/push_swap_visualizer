@@ -40,7 +40,7 @@ int draw_line_img(img_data *img, int beginX, int beginY, int endX, int endY, int
 	int 	pixels;
 	double 	pixelX;
 	double 	pixelY;
-	printf("x_s = %i y_s = %i x_e = %i y_e = %i\n",beginX,  beginY,  endX,  endY);
+	// printf("x_s = %i y_s = %i x_e = %i y_e = %i\n",beginX,  beginY,  endX,  endY);
 
 	deltaX = endX - beginX;
 	deltaY = endY - beginY;
@@ -51,12 +51,10 @@ int draw_line_img(img_data *img, int beginX, int beginY, int endX, int endY, int
 	deltaY /= pixels;
 	while (pixels)
 	{
-		printf("%i\n", pixels);
 		my_mlx_pixel_put(img, pixelX, pixelY, color);
 		pixelX += deltaX;
 		pixelY += deltaY;
 		--pixels;
 	}
-	printf("got to the end of draw line\n");
 	return (0);
 }

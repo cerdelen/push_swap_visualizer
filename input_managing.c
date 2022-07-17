@@ -1,25 +1,5 @@
 #include "includes/visualize.h"
 
-bool input_init(int argc, char **argv, t_data *data)
-{
-	int	j = 1;
-	for (int i = 1; i < argc; i++)
-		if (is_an_integer(argv[i]) == false)
-			return false;
-	data->stacks.tabs = malloc(sizeof(int) * (argc - 1));
-	STACK_A = NULL;
-	STACK_B = NULL;
-	STACK_A = createinput(argc, argv, data->stacks.tabs);
-	if (reapply_values(&STACK_A, argc - 1, data->stacks.tabs) == false)
-		return (false);
-	clone_list(&STACK_A, &IN_BACKUP);
-	// printf("start of print content A\n");
-	// ft_lstiter(STACK_A, print_lst_content);
-	// printf("start of print content backup\n");
-	// ft_lstiter(IN_BACKUP, print_lst_content);
-	return true;
-}
-
 bool is_an_integer(const char *str_num)
 {
 	int	len;
@@ -87,17 +67,21 @@ bool	reapply_values(t_list **stack_x, int max, int *arr)
 	t_list	*ptr;
 	int		i;
 	int		*lel;
+	int		*temp;
 
-	i = 0;
-	ptr = *stack_x;
-	sort_arr(arr, max);
 	if (double_input(arr, max) == false)
 		return false;
+	i = 0;
+	temp = malloc(sizeof(int) * max);
+	for(int j = 0; j < max; j++)
+		temp[j] = arr[j];
+	ptr = *stack_x;
+	sort_arr(temp, max);
 	ptr = *stack_x;
 	while (ptr)
 	{
 		lel = ptr->content;
-		*lel = index_of_sorted_arr(arr, *((int *)ptr->content), max);
+		*lel = index_of_sorted_arr(temp, *((int *)ptr->content), max);
 		ptr = ptr->next;
 	}
 	return true;
@@ -133,4 +117,27 @@ int	index_of_sorted_arr(int *arr, int value, int max)
 		i++;
 	}
 	return (i);
+}
+
+bool input_init(int argc, char **argv, t_data *data)
+{
+	int	j = 1;
+	for (int i = 1; i < argc; i++)
+		if (is_an_integer(argv[i]) == false)
+			return false;
+	data->stacks.tabs = malloc(sizeof(int) * (argc - 1));
+	STACK_A = NULL;
+	STACK_B = NULL;
+	STACK_A = createinput(argc, argv, data->stacks.tabs);
+	if (reapply_values(&STACK_A, argc - 1, data->stacks.tabs) == false)
+		return (false);
+
+	clone_list(&STACK_A, &IN_BACKUP);
+	data->max_nbr = argc - 2;
+	// printf("start of print content A\n");
+	// ft_lstiter(STACK_A, print_lst_content);
+	// printf("start of print content backup\n");
+	// ft_lstiter(IN_BACKUP, print_lst_content);
+	data->status = MENU;
+	return true;
 }

@@ -14,8 +14,11 @@
 #define START_LINE_STACK_A WINDOW_W/32
 #define START_LINE_STACK_B (WINDOW_W * 17 / 32)
 
-#define END_LINE_STACK_A (WINDOW_W * 15 /32)
-#define END_LINE_STACK_B WINDOW_W - WINDOW_W / 32
+#define END_LINE_X_STACK_A (WINDOW_W * 15 /32)
+#define END_LINE_X_STACK_B WINDOW_W - WINDOW_W / 32
+
+#define FIRST_LINE_Y 10
+#define LAST_LINE_Y WINDOW_H - 10
 
 #define MIDDLE_LINE_X_VALUE WINDOW_W/2
 
@@ -24,6 +27,24 @@
 #define IN_BACKUP data->stacks.input_backup
 #define MLX data->mlx
 #define IMAGE data->full_img
+#define STATUS data->status
+
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
+
+enum {
+	MENU = 0,
+	AUTOVIEW = 1,
+	SLIDES = 1
+};
+
 
 typedef struct mlx_data
 {
@@ -52,6 +73,7 @@ typedef struct	img_data {
 typedef struct	s_data {
 	int			time;
 	int			max_nbr;
+	int			status;
 	img_data	full_img;
 	mlx_data	mlx;
 	t_stacks	stacks;
