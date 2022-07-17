@@ -14,7 +14,7 @@ MLXFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
 NAME = visualize
 
-SRCS = 	main.c draw_lines.c
+SRCS = 	main.c draw_lines.c input_managing.c
 
 all: $(MLX) $(LIB)
 	@$(CC) $(CFLAGS) $(MLXFLAGS) $(SRCS) $(MLX) $(LIB) -o $(NAME)

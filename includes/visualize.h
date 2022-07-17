@@ -25,8 +25,6 @@
 #define MLX data->mlx
 #define IMAGE data->full_img
 
-
-
 typedef struct mlx_data
 {
 	void		*mlx;
@@ -59,18 +57,27 @@ typedef struct	s_data {
 	t_stacks	stacks;
 }				t_data;
 
-//	Init Functions
-bool	input_init(int argc, char **argv, t_data *data);
+//	Input Functions
+bool		input_init(int argc, char **argv, t_data *data);
+bool 		is_an_integer(const char *str_num);
+void		sort_arr(int *arr_a, int max);
+bool		double_input(int *arr, int max);
+bool		reapply_values(t_list **stack_x, int max, int *arr);
+t_list		*createinput(int argc, char **argv, int *tabs);
+int			index_of_sorted_arr(int *arr, int value, int max);
 
+//	List utility functions
+void		clone_list(t_list **orig, t_list **copy);
+void		print_lst_content_int(void *content);
 
-
-
-
-
+//	Freeing functions
+void		free_list(t_list **list);
+void		free_at_end(t_data *data);
 
 //	MLX Utility Functions
-int draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
-int draw_line_img(img_data *img, int beginX, int beginY, int endX, int endY, int color);
-
+int			draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
+int			draw_line_img(img_data *img, int beginX, int beginY, int endX, int endY, int color);
+int			close_game(t_data *data);
+int			key_press(int key, t_data *data);
 
 #endif
