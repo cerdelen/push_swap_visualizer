@@ -134,10 +134,6 @@ bool list_input_init(int argc, char **argv, t_data *data)
 
 	clone_list(&STACK_A, &IN_BACKUP);
 	data->max_nbr = argc - 2;
-	// printf("start of print content A\n");
-	// ft_lstiter(STACK_A, print_lst_content);
-	// printf("start of print content backup\n");
-	// ft_lstiter(IN_BACKUP, print_lst_content);
 	data->status = MENU;
 	return true;
 }

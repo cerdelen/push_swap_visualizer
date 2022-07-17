@@ -147,19 +147,25 @@ int main(int argc, char **argv)
 	t_data		*data;
 
 	data = calloc(sizeof(t_data), 1);
+
+	if (arg_input_init(argc, argv, data) == false)
+	{
+		printf("error encountered with stack input\n");
+		return (close_game(data));
+	}
+
 	// MLX.win = NULL;
 	if (list_input_init(argc, argv, data) == false)
 	{
 		printf("error encountered with stack input\n");
 		return (close_game(data));
 	}
-	if (operations_input_init(data) == false)
-	{
-		printf("error encountered with operations input\n");
-		return (close_game(data));
-	}
+	// if (operations_input_init(data) == false)
+	// {
+	// 	printf("error encountered with operations input\n");
+	// 	return (close_game(data));
+	// }
 	
-	// printf("NO error encountered with input\n");
 	MLX.mlx = mlx_init();
 	MLX.win = mlx_new_window(MLX.mlx, WINDOW_W, WINDOW_H, "Push-Swap-Visualizer by CErdelen");
 	IMAGE.img = mlx_new_image(MLX.mlx, WINDOW_W, WINDOW_H);
@@ -168,22 +174,6 @@ int main(int argc, char **argv)
 	mlx_hook(MLX.win, 17, 0, close_game, data);
 	draw_menu(data);
 
-
-
-	// draw_line_img(&data->full_img, 0, 0, WINDOW_W, WINDOW_H, 0x00FF0000);
-	// mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->full_img.img, 0, 0);
-
-
-
-
-
-	// draw_stacks(data, &draw);
-
-
-
-	// draw_line_IMAGE(&image, 10, START_LINE_STACK_A, 10, END_LINE_STACK_A, 0x00FF0000);
-	// printf("no problem with draw line\n");
-	// mlx_put_image_to_window(MLX.mlx, MLX.win, image.IMAGE, 0, 0);
 	mlx_loop(MLX.mlx);
 	return (0);
 }

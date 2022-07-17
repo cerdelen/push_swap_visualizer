@@ -132,9 +132,9 @@ void		draw_menu(t_data *data);
 
 
 
+bool		arg_input_init(int argc, char **argv, t_data *data);
 
-
-bool	operations_input_init(t_data *data);
+bool		operations_input_init(t_data *data);
 
 
 #endif

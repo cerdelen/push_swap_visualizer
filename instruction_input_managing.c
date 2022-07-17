@@ -56,8 +56,10 @@ bool	operations_input_init(t_data *data)
 	t_list	*temp_stack = NULL;
 	t_list	*temp;
 
+	printf("yes i got here first\n");
 	i = 0;
 	word = get_next_line(0);
+	printf("yes i got here \n");
 	while (word)
 	{
 		if (word[ft_strlen(word)] == '\n')
@@ -69,9 +71,9 @@ bool	operations_input_init(t_data *data)
 		}
 		temp = ft_lstnew(word);
 		ft_lstadd_back(&temp_stack, temp);
-		// INSTRUCTIONS[i] = word;
 		word = get_next_line(0);
 	}
+	printf("yes i got here too \n");
 	// free(word);
 	temp = temp_stack;
  	INSTRUCTIONS = malloc(sizeof(char *) * (ft_lstsize(temp_stack) + 1));
@@ -81,6 +83,7 @@ bool	operations_input_init(t_data *data)
 		i++;
 		temp = temp->next;
 	}
+	printf("yes i got here three \n");
 	INSTRUCTIONS[i] = NULL;
 	free_list(&temp_stack);
 	return true;
