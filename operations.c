@@ -117,6 +117,7 @@ void	operation_sa(t_list **stack_a, t_list **stack_b)
 		thirdelement = secondelement ->next;
 		secondelement->next = firstelement;
 		firstelement->next = thirdelement;
+		*stack_a = secondelement;
 	}
 	write(1, "sa\n", 3);
 }
@@ -134,6 +135,7 @@ void	operation_sb(t_list **stack_a, t_list **stack_b)
 		thirdelement = secondelement ->next;
 		secondelement->next = firstelement;
 		firstelement->next = thirdelement;
+		*stack_b = secondelement;
 	}
 	write(1, "sb\n", 3);
 }

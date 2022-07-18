@@ -18,6 +18,21 @@ void	start_slide(t_data *data)
 	draw_stacks(data, &draw);
 }
 
+void	start_play(t_data *data)
+{
+	STATUS = PLAY;
+	draw_stacks(data, &draw);
+}
+
+void	reset_image(t_data *data)
+{
+	mlx_clear_window(MLX.mlx, MLX.win);
+	if (IMAGE.img)
+		mlx_destroy_image(MLX.mlx, IMAGE.img);
+	IMAGE.img = mlx_new_image(MLX.mlx, WINDOW_W, WINDOW_H);
+	data->full_img.addr = mlx_get_data_addr(IMAGE.img, &IMAGE.bits_per_pixel, &IMAGE.line_length, &IMAGE.endian);
+}
+
 int	key_press(int key, t_data *data)
 {
 	printf("key = %i\n", key);
@@ -27,6 +42,8 @@ int	key_press(int key, t_data *data)
 	{
 		if (key == K_S)
 			start_slide(data);
+		if (key == K_N)
+			start_play(data);
 	}
 	else if (STATUS == SLIDES)
 	{
@@ -40,28 +57,35 @@ int	key_press(int key, t_data *data)
 	}
 	else if (STATUS == PLAY)
 	{
-		if (key == K_Q)
+		reset_image(data);
+		if (key == K_M)
+		{
+			draw_menu(data);
+			return (0);
+		}
+		else if (key == K_Q)
 			operation_sa(&STACK_A, &STACK_B);
-		if (key == K_W)
+		else if (key == K_W)
 			operation_sb(&STACK_A, &STACK_B);
-		if (key == K_E)
+		else if (key == K_E)
 			operation_ss(&STACK_A, &STACK_B);
-		if (key == K_R)
+		else if (key == K_R)
 			operation_pa(&STACK_A, &STACK_B);
-		if (key == K_T)
+		else if (key == K_T)
 			operation_pb(&STACK_A, &STACK_B);
-		if (key == K_Y)
+		else if (key == K_Y)
 			operation_ra(&STACK_A, &STACK_B);
-		if (key == K_U)
+		else if (key == K_U)
 			operation_rb(&STACK_A, &STACK_B);
-		if (key == K_I)
+		else if (key == K_I)
 			operation_rr(&STACK_A, &STACK_B);
-		if (key == K_O)
+		else if (key == K_O)
 			operation_rra(&STACK_A, &STACK_B);
-		if (key == K_P)
+		else if (key == K_P)
 			operation_rrb(&STACK_A, &STACK_B);
-		if (key == K_Z)
+		else if (key == K_Z)
 			operation_rrr(&STACK_A, &STACK_B);
+		draw_stacks(data, &draw);
 	}
 	return (0);
 }
@@ -184,8 +208,9 @@ int main(int argc, char **argv)
 	
 	MLX.mlx = mlx_init();
 	MLX.win = mlx_new_window(MLX.mlx, WINDOW_W, WINDOW_H, "Push-Swap-Visualizer by CErdelen");
-	IMAGE.img = mlx_new_image(MLX.mlx, WINDOW_W, WINDOW_H);
-	data->full_img.addr = mlx_get_data_addr(IMAGE.img, &IMAGE.bits_per_pixel, &IMAGE.line_length, &IMAGE.endian);
+	reset_image(data);
+	// IMAGE.img = mlx_new_image(MLX.mlx, WINDOW_W, WINDOW_H);
+	// data->full_img.addr = mlx_get_data_addr(IMAGE.img, &IMAGE.bits_per_pixel, &IMAGE.line_length, &IMAGE.endian);
 	mlx_key_hook(MLX.win, key_press, data);
 	mlx_hook(MLX.win, 17, 0, close_game, data);
 	draw_menu(data);

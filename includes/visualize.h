@@ -53,6 +53,7 @@ enum
 	K_A		= 0,
 	K_S		= 1,
 	K_M		= 46,
+	K_N		= 45,
 
 
  	K_Q		= 12,
@@ -70,14 +71,10 @@ enum
 	K_C		= 8,
 
 
-
-
 	K_LEFT	= 123,
 	K_RIGHT	= 124,
 	K_DOWN	= 125,
 	K_UP	= 126,
-
-
 
 
 	K_PLUS	= 24,
@@ -148,7 +145,6 @@ void		draw(int line_i, int elem_val, int max_value, t_data *data, bool stack, in
 void		draw_menu(t_data *data);
 
 
-
 bool		arg_input_init(int argc, char **argv, t_data *data);
 
 bool		operations_input_init(t_data *data);
@@ -165,6 +161,5 @@ void		operation_ss(t_list **stack_a, t_list **stack_b);
 void		operation_rra(t_list **stack_a, t_list **stack_b);
 void		operation_rrb(t_list **stack_a, t_list **stack_b);
 void		operation_rrr(t_list **stack_a, t_list **stack_b);
-
 
 #endif
