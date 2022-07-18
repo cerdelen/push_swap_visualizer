@@ -22,6 +22,7 @@
 
 #define MIDDLE_LINE_X_VALUE WINDOW_W/2
 
+#define STACKS data->stacks
 #define STACK_A data->stacks.stack_a
 #define STACK_B data->stacks.stack_b
 #define IN_BACKUP data->stacks.input_backup
@@ -150,16 +151,16 @@ bool		arg_input_init(int argc, char **argv, t_data *data);
 bool		operations_input_init(t_data *data);
 
 //	Operations functions
-void		operation_pa(t_list **stack_a, t_list **stack_b);
-void		operation_pb(t_list **stack_a, t_list **stack_b);
-void		operation_ra(t_list **stack_a, t_list **stack_b);
-void		operation_rb(t_list **stack_a, t_list **stack_b);
-void		operation_rr(t_list **stack_a, t_list **stack_b);
-void		operation_sa(t_list **stack_a, t_list **stack_b);
-void		operation_sb(t_list **stack_a, t_list **stack_b);
-void		operation_ss(t_list **stack_a, t_list **stack_b);
-void		operation_rra(t_list **stack_a, t_list **stack_b);
-void		operation_rrb(t_list **stack_a, t_list **stack_b);
-void		operation_rrr(t_list **stack_a, t_list **stack_b);
+void		operation_pa(t_data *data, t_list **stack_a, t_list **stack_b);
+void		operation_pb(t_data *data, t_list **stack_a, t_list **stack_b);
+void		operation_ra(t_data *data, t_list **stack_a, t_list **stack_b);
+void		operation_rb(t_data *data, t_list **stack_a, t_list **stack_b);
+void		operation_rr(t_data *data, t_list **stack_a, t_list **stack_b);
+void		operation_sa(t_data *data, t_list **stack_a, t_list **stack_b);
+void		operation_sb(t_data *data, t_list **stack_a, t_list **stack_b);
+void		operation_ss(t_data *data, t_list **stack_a, t_list **stack_b);
+void		operation_rra(t_data *data, t_list **stack_a, t_list **stack_b);
+void		operation_rrb(t_data *data, t_list **stack_a, t_list **stack_b);
+void		operation_rrr(t_data *data, t_list **stack_a, t_list **stack_b);
 
 #endif

@@ -64,27 +64,27 @@ int	key_press(int key, t_data *data)
 			return (0);
 		}
 		else if (key == K_Q)
-			operation_sa(&STACK_A, &STACK_B);
+			operation_sa(data, &STACK_A, &STACK_B);
 		else if (key == K_W)
-			operation_sb(&STACK_A, &STACK_B);
+			operation_sb(data, &STACK_A, &STACK_B);
 		else if (key == K_E)
-			operation_ss(&STACK_A, &STACK_B);
+			operation_ss(data, &STACK_A, &STACK_B);
 		else if (key == K_R)
-			operation_pa(&STACK_A, &STACK_B);
+			operation_pa(data, &STACK_A, &STACK_B);
 		else if (key == K_T)
-			operation_pb(&STACK_A, &STACK_B);
+			operation_pb(data, &STACK_A, &STACK_B);
 		else if (key == K_Y)
-			operation_ra(&STACK_A, &STACK_B);
+			operation_ra(data, &STACK_A, &STACK_B);
 		else if (key == K_U)
-			operation_rb(&STACK_A, &STACK_B);
+			operation_rb(data, &STACK_A, &STACK_B);
 		else if (key == K_I)
-			operation_rr(&STACK_A, &STACK_B);
+			operation_rr(data, &STACK_A, &STACK_B);
 		else if (key == K_O)
-			operation_rra(&STACK_A, &STACK_B);
+			operation_rra(data, &STACK_A, &STACK_B);
 		else if (key == K_P)
-			operation_rrb(&STACK_A, &STACK_B);
+			operation_rrb(data, &STACK_A, &STACK_B);
 		else if (key == K_Z)
-			operation_rrr(&STACK_A, &STACK_B);
+			operation_rrr(data, &STACK_A, &STACK_B);
 		draw_stacks(data, &draw);
 	}
 	return (0);
@@ -177,6 +177,7 @@ void	draw_menu(t_data *data)
 	mlx_string_put(MLX.mlx, MLX.win, 0, 10, 0x00FF0000, "HELLO THIS IS MENU");
 	mlx_string_put(MLX.mlx, MLX.win, 0, 20, 0x00FF0000, "press s to start slides");
 	mlx_string_put(MLX.mlx, MLX.win, 0, 30, 0x00FF0000, "press a to start auto");
+	mlx_string_put(MLX.mlx, MLX.win, 0, 40, 0x00FF0000, "press n to start play");
 	// mlx_string_put(MLX.mlx, MLX.win, 0, 30, 0x00FF0000, string);
 	// mlx_string_put(MLX.mlx, MLX.win, 0, 40, 0x00FF0000, string);
 	// mlx_string_put(MLX.mlx, MLX.win, 0, 50, 0x00FF0000, string);
