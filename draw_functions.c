@@ -1,6 +1,6 @@
 #include "includes/visualize.h"
 
-int		colour_perc(double perc)
+int		colour_perc(int perc)
 {
 	
 	int		t = 0;
@@ -9,8 +9,8 @@ int		colour_perc(double perc)
 	int		b = 0;
 	int		trgb;
 
-	r = perc * 255;
-	g = 255 - 255 * perc;
+	r = (perc * 255) / 100;
+	g = 255 - (255 * perc) / 100;
 	trgb = t << 24 | r << 16 | g << 8 | b;
 	return (trgb);
 }
@@ -20,28 +20,26 @@ void	draw(int line_i, int elem_val, int max_value, t_data *data, bool stack, int
 	int		y;
 	int		thickness = (LAST_LINE_Y - FIRST_LINE_Y) / line_max;
 	int		x_end;
-	double	x_perc_of_line;
 
+	if (thickness > MAX_THICKNESS)
+		thickness = MAX_THICKNESS;
 	if (stack == true)			//STACK A
 	{
-		
-		x_perc_of_line = (double) elem_val / max_value;
-		x_end = x_perc_of_line * (END_LINE_X_STACK_A - START_LINE_STACK_A) + 10 + START_LINE_STACK_A;
+		x_end = ((END_LINE_X_STACK_A - START_LINE_STACK_A) / (max_value + 1)) * (elem_val + 1) + START_LINE_STACK_A;
 		y = FIRST_LINE_Y + (line_i * thickness);						// line_i * ((last_line - first_line) / how many lines)
 		for (int i = 0; i < thickness; i++)
 		{
-			draw_line_img(&IMAGE, START_LINE_STACK_A, y, x_end, y, colour_perc(x_perc_of_line));
+			draw_line_img(&IMAGE, START_LINE_STACK_A, y, x_end, y, colour_perc((elem_val * 100) / max_value));
 			y++;
 		}
 	}
 	if (stack == false)			//STACK B
 	{
-		x_perc_of_line = (double) elem_val / max_value;
-		x_end = x_perc_of_line * (END_LINE_X_STACK_B - START_LINE_STACK_B) + 10 + START_LINE_STACK_B;
+		x_end = ((END_LINE_X_STACK_B - START_LINE_STACK_B) / (max_value + 1)) * (elem_val + 1) + START_LINE_STACK_B;
 		y = FIRST_LINE_Y + (line_i * thickness);						// line_i * ((last_line - first_line) / how many lines)
 		for (int i = 0; i < thickness; i++)
 		{
-			draw_line_img(&IMAGE, START_LINE_STACK_B, y, x_end, y, colour_perc(x_perc_of_line));
+			draw_line_img(&IMAGE, START_LINE_STACK_B, y, x_end, y, colour_perc((elem_val * 100) / max_value));
 			y++;
 		}
 	}
@@ -52,6 +50,7 @@ void	draw_stacks(t_data *data, void (*f)(int, int, int, t_data *, bool, int))
 	t_list	*ptr;
 	int		i;
 
+	reset_image(data);
 	if (STACK_A)
 	{
 		ptr = STACK_A;

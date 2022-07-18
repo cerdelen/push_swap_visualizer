@@ -129,13 +129,11 @@ bool list_input_init(int argc, char **argv, t_data *data)
 	data->stacks.tabs = malloc(sizeof(int) * (argc - 1));
 	STACK_A = NULL;
 	STACK_B = NULL;
-	STACK_A = createinput(argc, argv, data->stacks.tabs);
-	if (reapply_values(&STACK_A, argc - 1, data->stacks.tabs) == false)
+	IN_BACKUP = NULL;
+	IN_BACKUP = createinput(argc, argv, data->stacks.tabs);
+	if (reapply_values(&IN_BACKUP, argc - 1, data->stacks.tabs) == false)
 		return (false);
-
-	clone_list(&STACK_A, &IN_BACKUP);
 	data->max_nbr = argc - 2;
 	data->status = MAIN;
 	return true;
 }
-

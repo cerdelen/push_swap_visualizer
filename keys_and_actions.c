@@ -53,7 +53,6 @@ int	key_press(int key, t_data *data)
 	}
 	else if (STATUS == PLAY)
 	{
-		reset_image(data);
 		// printf("%zu %zu\n", SIZE_A, SIZE_B);
 		if (key == K_M)
 		{
@@ -61,28 +60,60 @@ int	key_press(int key, t_data *data)
 			return (0);
 		}
 		else if (key == K_Q)
+		{
 			operation_sa(data, &STACK_A, &STACK_B);
+			draw_stacks(data, &draw);
+		}
 		else if (key == K_W)
+		{
 			operation_sb(data, &STACK_A, &STACK_B);
+			draw_stacks(data, &draw);
+		}
 		else if (key == K_E)
+		{
 			operation_ss(data, &STACK_A, &STACK_B);
+			draw_stacks(data, &draw);
+		}
 		else if (key == K_R)
+		{
 			operation_pa(data, &STACK_A, &STACK_B);
+			draw_stacks(data, &draw);
+		}
 		else if (key == K_T)
+		{
 			operation_pb(data, &STACK_A, &STACK_B);
+			draw_stacks(data, &draw);
+		}
 		else if (key == K_Y)
+		{
 			operation_ra(data, &STACK_A, &STACK_B);
+			draw_stacks(data, &draw);
+		}
 		else if (key == K_U)
+		{
 			operation_rb(data, &STACK_A, &STACK_B);
+			draw_stacks(data, &draw);
+		}
 		else if (key == K_I)
+		{
 			operation_rr(data, &STACK_A, &STACK_B);
+			draw_stacks(data, &draw);
+		}
 		else if (key == K_O)
+		{
 			operation_rra(data, &STACK_A, &STACK_B);
+			draw_stacks(data, &draw);
+		}
 		else if (key == K_P)
+		{
 			operation_rrb(data, &STACK_A, &STACK_B);
+			draw_stacks(data, &draw);
+		}
 		else if (key == K_Z)
+		{
 			operation_rrr(data, &STACK_A, &STACK_B);
-		draw_stacks(data, &draw);
+			draw_stacks(data, &draw);
+		}
 	}
 	return (0);
 }

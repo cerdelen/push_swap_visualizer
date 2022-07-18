@@ -1,9 +1,5 @@
 #include "includes/visualize.h"
 
-
-
-
-
 int main(int argc, char **argv)
 {
 	t_data		*data;
@@ -30,8 +26,6 @@ int main(int argc, char **argv)
 	MLX.mlx = mlx_init();
 	MLX.win = mlx_new_window(MLX.mlx, WINDOW_W, WINDOW_H, "Push-Swap-Visualizer by CErdelen");
 	reset_image(data);
-	// IMAGE.img = mlx_new_image(MLX.mlx, WINDOW_W, WINDOW_H);
-	// data->full_img.addr = mlx_get_data_addr(IMAGE.img, &IMAGE.bits_per_pixel, &IMAGE.line_length, &IMAGE.endian);
 	mlx_key_hook(MLX.win, key_press, data);
 	mlx_hook(MLX.win, 17, 0, close_game, data);
 	draw_menu(data);
