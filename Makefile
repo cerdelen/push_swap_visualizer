@@ -14,7 +14,11 @@ MLXFLAGS = -framework Cocoa -framework OpenGL -framework IOKit
 
 NAME = visualize
 
-SRCS = 	main.c draw_lines.c list_input_managing.c freeing_utils.c list_utils.c instruction_input_managing.c arg_input_managing.c
+SRCS = 	main.c operations.c\
+		draw_lines.c list_input_managing.c\
+		freeing_utils.c list_utils.c\
+		instruction_input_managing.c\
+		arg_input_managing.c\
 
 all: $(MLX) $(LIB)
 	@$(CC) $(CFLAGS) $(MLXFLAGS) $(SRCS) $(MLX) $(LIB) -o $(NAME)
@@ -29,7 +33,7 @@ $(MLX):
 
 clean:
 	@$(MAKE) clean -C $(LIB_PATH)
-	@$(RM) $(NAME)
+#	@$(RM) $(NAME)
 
 fclean:
 	@$(MAKE) fclean -C $(LIB_PATH)

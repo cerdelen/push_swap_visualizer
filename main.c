@@ -20,10 +20,10 @@ void	start_slide(t_data *data)
 
 int	key_press(int key, t_data *data)
 {
-	printf("key == %i\n", key);
+	printf("key = %i\n", key);
 	if (key == K_ESC)
 		close_game(data);
-	if (STATUS == MENU)
+	if (STATUS == MAIN)
 	{
 		if (key == K_S)
 			start_slide(data);
@@ -37,6 +37,31 @@ int	key_press(int key, t_data *data)
 	{
 		if (key == K_M)
 			draw_menu(data);
+	}
+	else if (STATUS == PLAY)
+	{
+		if (key == K_Q)
+			operation_sa(&STACK_A, &STACK_B);
+		if (key == K_W)
+			operation_sb(&STACK_A, &STACK_B);
+		if (key == K_E)
+			operation_ss(&STACK_A, &STACK_B);
+		if (key == K_R)
+			operation_pa(&STACK_A, &STACK_B);
+		if (key == K_T)
+			operation_pb(&STACK_A, &STACK_B);
+		if (key == K_Y)
+			operation_ra(&STACK_A, &STACK_B);
+		if (key == K_U)
+			operation_rb(&STACK_A, &STACK_B);
+		if (key == K_I)
+			operation_rr(&STACK_A, &STACK_B);
+		if (key == K_O)
+			operation_rra(&STACK_A, &STACK_B);
+		if (key == K_P)
+			operation_rrb(&STACK_A, &STACK_B);
+		if (key == K_Z)
+			operation_rrr(&STACK_A, &STACK_B);
 	}
 	return (0);
 }
@@ -68,10 +93,7 @@ void	draw(int line_i, int elem_val, int max_value, t_data *data, bool stack, int
 		
 		x_perc_of_line = (double) elem_val / max_value;
 		x_end = x_perc_of_line * (END_LINE_X_STACK_A - START_LINE_STACK_A) + 10 + START_LINE_STACK_A;
-		// printf("line_i = %i\n val= %i max val = %i  \n middle oif calc = %i\n", line_i,elem_val, max_value, END_LINE_X_STACK_A - START_LINE_STACK_A);
-		// x_end = (elem_val * 100) / max_value;
 		y = FIRST_LINE_Y + (line_i * thickness);						// line_i * ((last_line - first_line) / how many lines)
-		// printf("x_perc = %f\n x_end = %i\n", x_perc_of_line, x_end);
 		for (int i = 0; i < thickness; i++)
 		{
 			draw_line_img(&IMAGE, START_LINE_STACK_A, y, x_end, y, colour_perc(x_perc_of_line));
@@ -82,10 +104,7 @@ void	draw(int line_i, int elem_val, int max_value, t_data *data, bool stack, int
 	{
 		x_perc_of_line = (double) elem_val / max_value;
 		x_end = x_perc_of_line * (END_LINE_X_STACK_B - START_LINE_STACK_B) + 10 + START_LINE_STACK_B;
-		// printf("line_i = %i\n val= %i max val = %i  \n middle oif calc = %i\n", line_i,elem_val, max_value, END_LINE_X_STACK_A - START_LINE_STACK_A);
-		// x_end = (elem_val * 100) / max_value;
 		y = FIRST_LINE_Y + (line_i * thickness);						// line_i * ((last_line - first_line) / how many lines)
-		// printf("x_perc = %f\n x_end = %i\n", x_perc_of_line, x_end);
 		for (int i = 0; i < thickness; i++)
 		{
 			draw_line_img(&IMAGE, START_LINE_STACK_B, y, x_end, y, 0x00FF0000);
@@ -101,7 +120,6 @@ void	draw_stacks(t_data *data, void (*f)(int, int, int, t_data *, bool, int))
 
 	if (STACK_A)
 	{
-		// printf("i wanna start draw Stack a\n");
 		ptr = STACK_A;
 		i = 0;
 		while (ptr != NULL)
@@ -124,14 +142,13 @@ void	draw_stacks(t_data *data, void (*f)(int, int, int, t_data *, bool, int))
 			i++;
 		}
 	}
-	// draw_line(MLX.mlx, MLX.win, MIDDLE_LINE_X_VALUE, 0, MIDDLE_LINE_X_VALUE, WINDOW_H, 0x00FF0000);
 	draw_line_img(&IMAGE, MIDDLE_LINE_X_VALUE, 0, MIDDLE_LINE_X_VALUE, WINDOW_H, 0x00FF0000);
 	mlx_put_image_to_window(MLX.mlx, MLX.win, IMAGE.img, 0, 0);
 }
 
 void	draw_menu(t_data *data)
 {
-	STATUS = MENU;
+	STATUS = MAIN;
 	mlx_clear_window(MLX.mlx, MLX.win);
 	mlx_string_put(MLX.mlx, MLX.win, 0, 10, 0x00FF0000, "HELLO THIS IS MENU");
 	mlx_string_put(MLX.mlx, MLX.win, 0, 20, 0x00FF0000, "press s to start slides");
@@ -148,13 +165,12 @@ int main(int argc, char **argv)
 
 	data = calloc(sizeof(t_data), 1);
 
-	if (arg_input_init(argc, argv, data) == false)
-	{
-		printf("error encountered with stack input\n");
-		return (close_game(data));
-	}
+	// if (arg_input_init(argc, argv, data) == false)
+	// {
+	// 	printf("error encountered with stack input\n");
+	// 	return (close_game(data));
+	// }
 
-	// MLX.win = NULL;
 	if (list_input_init(argc, argv, data) == false)
 	{
 		printf("error encountered with stack input\n");

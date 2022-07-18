@@ -134,7 +134,7 @@ bool list_input_init(int argc, char **argv, t_data *data)
 
 	clone_list(&STACK_A, &IN_BACKUP);
 	data->max_nbr = argc - 2;
-	data->status = MENU;
+	data->status = MAIN;
 	return true;
 }
 

@@ -31,40 +31,57 @@
 #define INSTRUCTIONS data->instr
 
 enum {
-	ON_KEYDOWN = 2,
-	ON_KEYUP = 3,
-	ON_MOUSEDOWN = 4,
-	ON_MOUSEUP = 5,
-	ON_MOUSEMOVE = 6,
-	ON_EXPOSE = 12,
-	ON_DESTROY = 17
+	ON_KEYDOWN		= 2,
+	ON_KEYUP		= 3,
+	ON_MOUSEDOWN	= 4,
+	ON_MOUSEUP		= 5,
+	ON_MOUSEMOVE	= 6,
+	ON_EXPOSE		= 12,
+	ON_DESTROY		= 17
 };
 
 enum {
-	MENU = 0,
-	AUTOVIEW = 1,
-	SLIDES = 2
+	MAIN		= 0,
+	AUTOVIEW	= 1,
+	SLIDES		= 2,
+	PLAY		= 3
 };
 
 enum
 {
-	K_ESC = 53,
-	K_A = 0,
-	K_S = 1,
-	K_M = 46,
-
-	K_C = 8,
-
-	K_LEFT = 123,
-	K_RIGHT = 124,
-	K_DOWN = 125,
-	K_UP = 126,
+	K_ESC	= 53,
+	K_A		= 0,
+	K_S		= 1,
+	K_M		= 46,
 
 
+ 	K_Q		= 12,
+	K_W		= 13,
+	K_E		= 14,
+	K_R		= 15,
+	K_T		= 17,
+	K_Y		= 16,
+	K_U		= 32,
+	K_I		= 34,
+	K_O		= 31,
+	K_P		= 35,
+	K_Z		= 6,
+	K_X		= 7,
+	K_C		= 8,
 
 
-	K_PLUS = 24,
-	K_MINUS = 27
+
+
+	K_LEFT	= 123,
+	K_RIGHT	= 124,
+	K_DOWN	= 125,
+	K_UP	= 126,
+
+
+
+
+	K_PLUS	= 24,
+	K_MINUS	= 27
 };
 
 typedef struct mlx_data
@@ -135,6 +152,19 @@ void		draw_menu(t_data *data);
 bool		arg_input_init(int argc, char **argv, t_data *data);
 
 bool		operations_input_init(t_data *data);
+
+//	Operations functions
+void		operation_pa(t_list **stack_a, t_list **stack_b);
+void		operation_pb(t_list **stack_a, t_list **stack_b);
+void		operation_ra(t_list **stack_a, t_list **stack_b);
+void		operation_rb(t_list **stack_a, t_list **stack_b);
+void		operation_rr(t_list **stack_a, t_list **stack_b);
+void		operation_sa(t_list **stack_a, t_list **stack_b);
+void		operation_sb(t_list **stack_a, t_list **stack_b);
+void		operation_ss(t_list **stack_a, t_list **stack_b);
+void		operation_rra(t_list **stack_a, t_list **stack_b);
+void		operation_rrb(t_list **stack_a, t_list **stack_b);
+void		operation_rrr(t_list **stack_a, t_list **stack_b);
 
 
 #endif
