@@ -84,6 +84,7 @@ bool	reapply_values(t_list **stack_x, int max, int *arr)
 		*lel = index_of_sorted_arr(temp, *((int *)ptr->content), max);
 		ptr = ptr->next;
 	}
+	free(temp);
 	return true;
 }
 

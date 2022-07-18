@@ -5,6 +5,8 @@ void	clone_list(t_list **orig, t_list **copy)
 	t_list	*ptr = *orig;
 	t_list	*new;
 
+	if(copy)
+		free_list(copy);
 	*copy = NULL;
 	while (ptr)
 	{

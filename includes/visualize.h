@@ -22,7 +22,8 @@
 
 #define MIDDLE_LINE_X_VALUE WINDOW_W/2
 
-#define STACKS data->stacks
+#define SIZE_A data->stacks.size_a
+#define SIZE_B data->stacks.size_b
 #define STACK_A data->stacks.stack_a
 #define STACK_B data->stacks.stack_b
 #define IN_BACKUP data->stacks.input_backup
@@ -71,6 +72,9 @@ enum
 	K_X		= 7,
 	K_C		= 8,
 
+
+
+	K_B		= 11,
 
 	K_LEFT	= 123,
 	K_RIGHT	= 124,
@@ -162,5 +166,23 @@ void		operation_ss(t_data *data, t_list **stack_a, t_list **stack_b);
 void		operation_rra(t_data *data, t_list **stack_a, t_list **stack_b);
 void		operation_rrb(t_data *data, t_list **stack_a, t_list **stack_b);
 void		operation_rrr(t_data *data, t_list **stack_a, t_list **stack_b);
+
+//	Reset functions
+void		reset_stacks(t_data *data);
+void		reset_image(t_data *data);
+
+
+//	Drawing functions
+int			colour_perc(double perc);
+void		draw(int line_i, int elem_val, int max_value, t_data *data, bool stack, int line_max);
+void		draw_stacks(t_data *data, void (*f)(int, int, int, t_data *, bool, int));
+void		draw_menu(t_data *data);
+
+//	Keys and action functions
+int			close_game(t_data *data);
+void		start_slide(t_data *data);
+void		start_play(t_data *data);
+int			key_press(int key, t_data *data);
+
 
 #endif
