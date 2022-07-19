@@ -4,12 +4,8 @@ int	close_game(t_data *data)
 {
 	if (MLX.win)
 		mlx_destroy_window(MLX.mlx, MLX.win);
-	free_list(&STACK_A);
-	free_list(&STACK_B);
 	free_at_end(data);
-	free(data);
 	exit(0);
-	return (0);
 }
 
 void	start_slide(t_data *data)

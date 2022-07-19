@@ -29,6 +29,7 @@
 #define IMAGE					data->full_img
 #define STATUS					data->status
 #define INSTRUCTIONS			data->instr
+#define ENVIO					data->env
 
 enum {
 	ON_KEYDOWN		= 2,
@@ -113,6 +114,7 @@ typedef struct	s_data {
 	int			max_nbr;
 	int			status;
 	char		**instr;
+	char		**env;
 	img_data	full_img;
 	mlx_data	mlx;
 	t_stacks	stacks;

@@ -25,6 +25,8 @@ void	draw(int line_i, int elem_val, int max_value, t_data *data, bool stack, int
 		thickness = MAX_THICKNESS;
 	if (stack == true)			//STACK A
 	{
+		// if (elem_val == 0 )
+		// 	printf("%i\n",  ((END_LINE_X_STACK_A - START_LINE_STACK_A) / (max_value + 1)) * (elem_val + 1));
 		x_end = ((END_LINE_X_STACK_A - START_LINE_STACK_A) / (max_value + 1)) * (elem_val + 1) + START_LINE_STACK_A;
 		y = FIRST_LINE_Y + (line_i * thickness);						// line_i * ((last_line - first_line) / how many lines)
 		for (int i = 0; i < thickness; i++)

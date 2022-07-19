@@ -1,11 +1,11 @@
 #include "includes/visualize.h"
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **env)
 {
 	t_data		*data;
 
 	data = calloc(sizeof(t_data), 1);
-
+	ENVIO = env;
 	// if (arg_input_init(argc, argv, data) == false)
 	// {
 	// 	printf("error encountered with stack input\n");

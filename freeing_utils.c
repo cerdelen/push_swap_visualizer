@@ -22,4 +22,5 @@ void	free_at_end(t_data *data)
 		free_list(&IN_BACKUP);
 	if (data->stacks.tabs)
 		free(data->stacks.tabs);
+	free(data);
 }
