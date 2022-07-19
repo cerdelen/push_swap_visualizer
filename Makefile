@@ -21,10 +21,13 @@ SRCS = 	main.c operations.c resets.c\
 		arg_input_managing.c\
 		keys_and_actions.c draw_functions.c
 
+GREEN = \033[92m
+RESET = \033[0m
+RED = \033[91m
+
 all: $(MLX) $(LIB)
 	@$(CC) $(CFLAGS) $(MLXFLAGS) $(SRCS) $(MLX) $(LIB) -o $(NAME)
-	@echo "\033[92mVisualize successfully compiled!\033[0m"
-
+	@echo "$(GREEN)Visualize successfully compiled!$(RESET)"
 
 $(LIB):
 	@$(MAKE) -C $(LIB_PATH)
@@ -39,6 +42,6 @@ clean:
 fclean:
 	@$(MAKE) fclean -C $(LIB_PATH)
 	@$(RM) $(NAME)
-	@echo "\033[91mVisualize successfully cleaned!\033[0m"
+	@echo "$(RED)Visualize successfully cleaned!$(RESET)"
 
 re: fclean all
